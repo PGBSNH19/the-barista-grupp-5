@@ -11,20 +11,16 @@ namespace Kaffemaskin
 
         public void Start()
         {
-            var bean = new Bean();
-            var grinder = new Grinder();
-            var coffeMaker = new CoffeeMaker();
-            var cup = new Cup();
+           
         }
 
     }
     class Espresso
     {
-        string origin;
-        string roastLevel;
-        string beanType;
-        bool grind;
-
+        public string origin { get; set; }
+        string roastLevel { get; set; }
+        string beanType { get; set; }
+        choseBean(or)
         int strenght;
         int waterVolume;
         string filter;
@@ -33,13 +29,18 @@ namespace Kaffemaskin
         double milk;
         bool sugar;
 
-        public void choseBean()
+        public choseBean(string origin, string roastLevel, string beanType)
+        {
+            
+        }
+
+        public void makeCoffee()
         {
 
         }
 
     }
-}
+
     //class Bean
     //{
     //    string origin;
@@ -63,4 +64,4 @@ namespace Kaffemaskin
     //    bool sugar;
 
     //}
-//}
+}
