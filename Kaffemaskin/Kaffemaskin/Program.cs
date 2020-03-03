@@ -3,8 +3,16 @@ using System.Collections.Generic;
 
 namespace Kaffemaskin
 {
+    interface IBravage
+    {
+        List <string> Ingredience { get; set; }
+        string CupType { get; set; }
+    }
+
+    
     class Program : Espresso
     {
+
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
@@ -21,7 +29,7 @@ namespace Kaffemaskin
         }
 
     }
-    class Espresso
+    class Espresso : IBravage
     {
        ////public string origin { get; set; }
        ////public  string roastLevel { get; set; }
