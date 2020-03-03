@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Kaffemaskin
 {
@@ -7,7 +8,7 @@ namespace Kaffemaskin
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            var espresso = new Espresso().makeCoffee(5).choseBean("afroica", 5, "arabica").;
+            var espresso = new Espresso().makeCoffee(5).choseBean("afroica", 5, "arabica");
 
 
 
@@ -33,25 +34,28 @@ namespace Kaffemaskin
         double milk;
         bool sugar;
 
-        public string choseBean(string origin, int roastLevel, string beanType)
+        public Espresso choseBean(string origin, int roastLevel, string beanType)
         {
-            var Bean = new Bean() {
+            var Bean = new Bean()
+            {
                 Origin = origin,
                 RoastLevel = roastLevel,
                 BeanType = beanType
             };
-            
-           
-            return Bean.Origin;
+
+
+
+
+            return this;
         }
-       public int makeCoffee(int inputStrenght)
+       public Espresso makeCoffee(int inputStrenght)
         {
             var coffeMaker = new CoffeeMaker()
             {
                 Strenght = inputStrenght,
             };
 
-            return this.strenght;
+            return this;
         }
 
 
