@@ -7,7 +7,9 @@ namespace Kaffemaskin
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            Espresso.choseBean("afroica", 3, "arabica");
+            var espresso = new Espresso().choseBean("afroica", 5, "arabica");
+            
+            
         }
 
         public void Start()
@@ -37,14 +39,20 @@ namespace Kaffemaskin
                 RoastLevel = roastLevel,
                 BeanType = beanType
             };
+            
+            int makeCoffee(int inputStrenght)
+            {
+                var coffeMaker = new CoffeeMaker()
+                {
+                    Strenght = inputStrenght,
+                };
 
+                return coffeMaker;
+            }
             return Bean;
         }
 
-        public void makeCoffee()
-        {
-
-        }
+       
 
     }
 
@@ -56,12 +64,11 @@ namespace Kaffemaskin
     }
 
 
-    //class CoffeeMaker
-    //{
-    //    int strenght;
-    //    int waterVolume;
-    //    string filter;
-    //}
+    class CoffeeMaker
+    {
+        public int Strenght { get; set; }
+
+    }
 
     //class Cup
     //{
