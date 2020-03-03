@@ -7,9 +7,10 @@ namespace Kaffemaskin
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            var espresso = new Espresso().choseBean("afroica", 5, "arabica");
-            
-            
+            var espresso = new Espresso().makeCoffee(5).choseBean("afroica", 5, "arabica").;
+
+
+
         }
 
         public void Start()
@@ -32,7 +33,7 @@ namespace Kaffemaskin
         double milk;
         bool sugar;
 
-        public object choseBean(string origin, int roastLevel, string beanType)
+        public string choseBean(string origin, int roastLevel, string beanType)
         {
             var Bean = new Bean() {
                 Origin = origin,
@@ -40,19 +41,19 @@ namespace Kaffemaskin
                 BeanType = beanType
             };
             
-            int makeCoffee(int inputStrenght)
+           
+            return Bean.Origin;
+        }
+       public int makeCoffee(int inputStrenght)
+        {
+            var coffeMaker = new CoffeeMaker()
             {
-                var coffeMaker = new CoffeeMaker()
-                {
-                    Strenght = inputStrenght,
-                };
+                Strenght = inputStrenght,
+            };
 
-                return coffeMaker;
-            }
-            return Bean;
+            return this.strenght;
         }
 
-       
 
     }
 
