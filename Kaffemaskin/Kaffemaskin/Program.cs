@@ -9,6 +9,7 @@ namespace Kaffemaskin
         {
             Console.WriteLine("Hello World!");
             var espresso = new Espresso().makeCoffee(5).choseBean("afroica", 5, "arabica");
+            Console.WriteLine(espresso.ToString());
 
 
 
@@ -26,60 +27,46 @@ namespace Kaffemaskin
        ////public  string roastLevel { get; set; }
        ////public  string beanType { get; set; }
         
-        int strenght;
-        int waterVolume;
-        string filter;
-
-        double cupVolume;
-        double milk;
-        bool sugar;
-
+       
+            private Cup obj = new Cup();
         public Espresso choseBean(string origin, int roastLevel, string beanType)
         {
-            var Bean = new Bean()
-            {
-                Origin = origin,
-                RoastLevel = roastLevel,
-                BeanType = beanType
-            };
 
-
-
-
+            obj.Origin = origin;
+            obj.RoastLevel = roastLevel;
+            obj.BeanType = beanType;
             return this;
         }
        public Espresso makeCoffee(int inputStrenght)
         {
-            var coffeMaker = new CoffeeMaker()
-            {
-                Strenght = inputStrenght,
-            };
 
+            obj.Strenght = inputStrenght;
             return this;
         }
 
 
     }
 
-    public class Bean
+    //public class Bean
+    //{
+    //    public string Origin { get; set; }
+    //    public int RoastLevel { get; set; }
+    //    public string BeanType { get; set; }
+    //}
+
+
+    //class CoffeeMaker
+    //{
+    //    public int Strenght { get; set; }
+
+    //}
+
+    class Cup
     {
         public string Origin { get; set; }
         public int RoastLevel { get; set; }
         public string BeanType { get; set; }
-    }
-
-
-    class CoffeeMaker
-    {
         public int Strenght { get; set; }
 
     }
-
-    //class Cup
-    //{
-    //    double cupVolume;
-    //    double milk;
-    //    bool sugar;
-
-    //}
 }
