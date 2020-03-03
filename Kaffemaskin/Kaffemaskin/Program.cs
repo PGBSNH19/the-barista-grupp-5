@@ -29,7 +29,7 @@ namespace Kaffemaskin
         double milk;
         bool sugar;
 
-        public choseBean(string origin, string roastLevel, string beanType)
+        public static choseBean(string origin, string roastLevel, string beanType)
         {
             
         }
