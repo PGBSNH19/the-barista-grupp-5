@@ -2,11 +2,12 @@
 
 namespace Kaffemaskin
 {
-    class Program
+    class Program : Espresso
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            Espresso.choseBean(origin, roastLevel, beanType);
         }
 
         public void Start()
@@ -17,10 +18,10 @@ namespace Kaffemaskin
     }
     class Espresso
     {
-        public string origin { get; set; }
-        string roastLevel { get; set; }
-        string beanType { get; set; }
-        choseBean(or)
+       public static string origin { get; set; }
+       public static string roastLevel { get; set; }
+       public static string beanType { get; set; }
+        
         int strenght;
         int waterVolume;
         string filter;
@@ -29,9 +30,15 @@ namespace Kaffemaskin
         double milk;
         bool sugar;
 
-        public static choseBean(string origin, string roastLevel, string beanType)
+        public static object choseBean(string origin, string roastLevel, string beanType)
         {
-            
+            var Bean = new Bean() {
+                origin = origin,
+                roastLevel = roastLevel,
+                beanType = beanType
+            };
+
+            return Bean;
         }
 
         public void makeCoffee()
@@ -41,13 +48,13 @@ namespace Kaffemaskin
 
     }
 
-    //class Bean
-    //{
-    //    string origin;
-    //    string roastLevel;
-    //    string beanType;
-    //    bool grind;
-    //}
+    class Bean
+    {
+        string origin;
+        string roastLevel;
+        string beanType;
+        bool grind;
+    }
 
 
     //class CoffeeMaker
