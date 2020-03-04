@@ -5,9 +5,9 @@ namespace Coffe
 {
     public interface ICoffee
     {
-
+        
         string CoffeeType { get; }
-
+        
         ICoffee AddChocolateSyrup();
         ICoffee AddEspresso();
         ICoffee AddMilk();
@@ -27,7 +27,7 @@ namespace Coffe
 
             private IEnumerable<Ingredient> Ingredients = new List<Ingredient>();
             public string CoffeeType { get; }
-
+            
             public ICoffee AddChocolateSyrup()
             {
                 ((List<Ingredient>)Ingredients).Add(new Ingredient() { name = "Chocolate syrup" });
@@ -39,14 +39,14 @@ namespace Coffe
                 ((List<Ingredient>)Ingredients).Add(new Ingredient() { name = "Espresso" });
                 return this;
             }
-
+            
             public ICoffee AddMilk()
             {
                 ((List<Ingredient>)Ingredients).Add(new Ingredient() { name = "Milk" });
                 return this;
             }
 
-
+            
             public ICoffee AddMilkFoam()
             {
                 ((List<Ingredient>)Ingredients).Add(new Ingredient() { name = "Milk foam" });
