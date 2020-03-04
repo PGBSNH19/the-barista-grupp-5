@@ -1,80 +1,68 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Kaffemaskin
+namespace Coffe
 {
-    interface IBravage
-    {
-        List <string> Ingredience { get; set; }
-        string CupType { get; set; }
-    }
-
-    
-    class Program : Espresso
+    public interface ICoffee
     {
 
-        static void Main(string[] args)
+        string CoffeeType { get; }
+
+        ICoffee AddChocolateSyrup();
+        ICoffee AddEspresso();
+        ICoffee AddMilk();
+        ICoffee AddMilkFoam();
+        ICoffee AddWater();
+
+        class Program
         {
-            Console.WriteLine("Hello World!");
-            var espresso = new Espresso().makeCoffee(5).choseBean("afroica", 5, "arabica");
-            Console.WriteLine(espresso.ToString());
-
-
-
+            static void Main(string[] args)
+            {
+                ICoffee coffee = new CoffeMaker().AddMilk().AddEspresso().AddMilkFoam();
+            }
         }
 
-        public void Start()
-        {
-           
-        }
-
-    }
-    class Espresso : IBravage
-    {
-       ////public string origin { get; set; }
-       ////public  string roastLevel { get; set; }
-       ////public  string beanType { get; set; }
-        
-       
-            private Cup obj = new Cup();
-        public Espresso choseBean(string origin, int roastLevel, string beanType)
+        public class CoffeMaker : ICoffee
         {
 
-            obj.Origin = origin;
-            obj.RoastLevel = roastLevel;
-            obj.BeanType = beanType;
-            return this;
+            private IEnumerable<Ingredient> Ingredients = new List<Ingredient>();
+            public string CoffeeType { get; }
+
+            public ICoffee AddChocolateSyrup()
+            {
+                ((List<Ingredient>)Ingredients).Add(new Ingredient() { name = "Chocolate syrup" });
+                return this;
+            }
+
+            public ICoffee AddEspresso()
+            {
+                ((List<Ingredient>)Ingredients).Add(new Ingredient() { name = "Espresso" });
+                return this;
+            }
+
+            public ICoffee AddMilk()
+            {
+                ((List<Ingredient>)Ingredients).Add(new Ingredient() { name = "Milk" });
+                return this;
+            }
+
+
+            public ICoffee AddMilkFoam()
+            {
+                ((List<Ingredient>)Ingredients).Add(new Ingredient() { name = "Milk foam" });
+                return this;
+            }
+
+            public ICoffee AddWater()
+            {
+                ((List<Ingredient>)Ingredients).Add(new Ingredient() { name = "Water" });
+                return this;
+            }
         }
-       public Espresso makeCoffee(int inputStrenght)
+
+        public class Ingredient
         {
-
-            obj.Strenght = inputStrenght;
-            return this;
+            public string name;
         }
-
-
-    }
-
-    //public class Bean
-    //{
-    //    public string Origin { get; set; }
-    //    public int RoastLevel { get; set; }
-    //    public string BeanType { get; set; }
-    //}
-
-
-    //class CoffeeMaker
-    //{
-    //    public int Strenght { get; set; }
-
-    //}
-
-    class Cup
-    {
-        public string Origin { get; set; }
-        public int RoastLevel { get; set; }
-        public string BeanType { get; set; }
-        public int Strenght { get; set; }
-
     }
 }
