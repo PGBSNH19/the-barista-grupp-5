@@ -5,22 +5,16 @@ namespace Coffe
 {
     public interface ICoffee
     {
-        List<string> ingredient { get
-            {
-                return
-            }
-            set
-            { 
-
-            }
-        }
-        string CoffeeType { get; }
+       
+        string CoffeeType { get; set; }
 
         ICoffee AddChocolateSyrup();
         ICoffee AddEspresso();
         ICoffee AddMilk();
         ICoffee AddMilkFoam();
         ICoffee AddWater();
+        ICoffee CreateBewerage();
+
     }
 
         class Program
@@ -28,7 +22,7 @@ namespace Coffe
             
             static void Main(string[] args)
             {
-                ICoffee coffee = new CoffeMaker().AddMilk().AddEspresso().AddMilkFoam();
+                ICoffee coffee = new CoffeMaker().AddEspresso().AddMilk().CreateBewerage();
             }
 
             
@@ -38,8 +32,8 @@ namespace Coffe
         {
             
             private IEnumerable<Ingredient> Ingredients = new List<Ingredient>();
-            public string CoffeeType { get; }
-            public List<CoffeType> Recpies;
+            public string CoffeeType { get; set; }
+            
             
             public ICoffee AddChocolateSyrup()
             {
@@ -72,10 +66,25 @@ namespace Coffe
                 return this;
             }
             
-            public void CreateRecipies()
+            public ICoffee CreateBewerage()
             {
+            
+                List<string> test = new List<string>();
 
-
+                foreach (var item in Ingredients)
+                {
+                    test.Add(item.name);
+                }
+               
+                if(test.Count <= 2 && test.Contains("Milk") && test.Contains("Espresso"))
+                {
+                    CoffeeType = "Latte";
+                }
+                else if(test.Contains("Espresso") && test.Contains("Milk") && test.Contains("Milk foam"))
+                {
+                    CoffeeType = "Cappuccino";
+                }
+                return this;
             }
         }
 
