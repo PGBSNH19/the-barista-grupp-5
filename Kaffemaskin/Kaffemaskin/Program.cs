@@ -16,8 +16,7 @@ namespace Coffe
         ICoffee CreateBewerage();
 
     }
-
-        class Program
+class Program
         {
             
             static void Main(string[] args)
@@ -30,77 +29,64 @@ namespace Coffe
 
         public class CoffeMaker : ICoffee
         {
-            
-            private IEnumerable<Ingredient> Ingredients = new List<Ingredient>();
-            public string CoffeeType { get; set; }
+
+        public List<string> Ingredients = new List<string>();
+        public string CoffeeType { get; set; }
             
             
             public ICoffee AddChocolateSyrup()
             {
-                ((List<Ingredient>)Ingredients).Add(new Ingredient() { name = "Chocolate syrup" });
-                return this;
+            ((List<string>)Ingredients).Add("Chocolate syrup");
+
+            return this;
             }
 
             public ICoffee AddEspresso()
             {
-                ((List<Ingredient>)Ingredients).Add(new Ingredient() { name = "Espresso" });
-                return this;
+            ((List<string>)Ingredients).Add("Espresso");
+            return this;
             }
             
             public ICoffee AddMilk()
             {
-                ((List<Ingredient>)Ingredients).Add(new Ingredient() { name = "Milk" });
-                return this;
+            ((List<string>)Ingredients).Add("Milk");
+            return this;
             }
 
             
             public ICoffee AddMilkFoam()
             {
-                ((List<Ingredient>)Ingredients).Add(new Ingredient() { name = "Milk foam" });
-                return this;
+            ((List<string>)Ingredients).Add("Milkfoam");
+            return this;
             }
 
             public ICoffee AddWater()
             {
-                ((List<Ingredient>)Ingredients).Add(new Ingredient() { name = "Water" });
-                return this;
+            ((List<string>)Ingredients).Add("Water");
+            return this;
             }
             
             public ICoffee CreateBewerage()
             {
-            
-                List<string> test = new List<string>();
 
-                foreach (var item in Ingredients)
-                {
-                    test.Add(item.name);
-                }
-               
-                if(test.Count <= 2 && test.Contains("Milk") && test.Contains("Espresso"))
-                {
-                    CoffeeType = "Latte";
-                }
-                else if(test.Contains("Espresso") && test.Contains("Milk") && test.Contains("Milk foam"))
-                {
-                    CoffeeType = "Cappuccino";
-                }
-                return this;
+            if (Ingredients.Count <= 2 && Ingredients.Contains("Milk") && Ingredients.Contains("Espresso"))
+            {
+                CoffeeType = "Latte";
             }
+            else if (Ingredients.Contains("Espresso") && Ingredients.Contains("Milk") && Ingredients.Contains("Milk foam"))
+            {
+                CoffeeType = "Cappuccino";
+            }
+            return this;
         }
-
-        public class Ingredient
-        {
-            public string name;
-
-        
-
-        
         }
+    class CoffeeType
+    {
 
-        
+    }
     class Cappuccino
     {
-        List<Object> ingredient = new List<Object>();
+
     }
     class Americano
     {
