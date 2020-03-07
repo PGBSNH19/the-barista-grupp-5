@@ -1,109 +1,118 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Coffe
 {
     public interface ICoffee
     {
-        string CoffeeType { get; set; }
+        IList<string> Ingredients { get; set; }
+        string CoffeeType { get; }
 
-        ICoffee AddChocolateSyrup();
-        ICoffee AddEspresso();
-        ICoffee AddMilk();
-        ICoffee AddMilkFoam();
-        ICoffee AddWater();
-        ICoffee CreateBewerage();
+    }
+
+    public interface ICoffeeMaker
+    {
+        ICoffeeMaker AddChocolateSyrup();
+        ICoffeeMaker AddEspresso();
+        ICoffeeMaker AddMilk();
+        ICoffeeMaker AddMilkFoam();
+        ICoffeeMaker AddWater();
+        ICoffeeMaker CreateBewerage(Func<ICoffee, ICoffee, bool> func);
+        ICoffeeMaker Serve();
+    }
+
+    public interface Test
+    {
+        public List<string> Recipies { get; set; }
     }
 
     class Program
     {
         static void Main(string[] args)
         {
-            ICoffee coffee = new CoffeMaker().AddEspresso().AddMilk().CreateBewerage();
+            ICoffeeMaker coffee = new CoffeMaker().AddMilk().AddEspresso().AddMilkFoam().CreateBewerage((x, y) => x.Ingredients.SequenceEqual(y.Ingredients)).Serve();
         }
     }
 
-    public class CoffeMaker : ICoffee
+    public class CoffeMaker : ICoffeeMaker, ICoffee
     {
-        public List<string> Ingredients = new List<string>();
+        public IList<string> Ingredients { get; set; } = new List<string>();
         public string CoffeeType { get; set; }
+        public IList<CoffeeRecipie> Recipies = new List<CoffeeRecipie>();
 
-        public ICoffee AddChocolateSyrup()
+        public ICoffeeMaker AddChocolateSyrup()
         {
-            ((List<string>)Ingredients).Add("Chocolate syrup");
+            (Ingredients).Add("Chocolate syrup");
             return this;
         }
 
-        public ICoffee AddEspresso()
+        public ICoffeeMaker AddEspresso()
         {
-            ((List<string>)Ingredients).Add("Espresso");
+            (Ingredients).Add("Espresso");
             return this;
         }
 
-        public ICoffee AddMilk()
+        public ICoffeeMaker AddMilk()
         {
-            ((List<string>)Ingredients).Add("Milk");
+            (Ingredients).Add("Milk");
             return this;
         }
 
-        public ICoffee AddMilkFoam()
+        public ICoffeeMaker AddMilkFoam()
         {
-            ((List<string>)Ingredients).Add("Milkfoam");
+            (Ingredients).Add("Milk foam");
             return this;
         }
 
-        public ICoffee AddWater()
+        public ICoffeeMaker AddWater()
         {
-            ((List<string>)Ingredients).Add("Water");
+            (Ingredients).Add("Water");
             return this;
         }
 
-        public ICoffee CreateBewerage()
+        public ICoffeeMaker CreateBewerage(Func<ICoffee, ICoffee, bool> func)
         {
-            if (Ingredients.Count <= 2 && Ingredients.Contains("Milk") && Ingredients.Contains("Espresso"))
+
+            Recipies.Add(new CoffeeRecipie() { CoffeeType = "Latte", Ingredients = new List<string> { "Espresso", "Milk" } });
+            Recipies.Add(new CoffeeRecipie() { CoffeeType = "Espresso", Ingredients = new List<string> { "Espresso" } });
+            Recipies.Add(new CoffeeRecipie() { CoffeeType = "Americano", Ingredients = new List<string> { "Espresso", "Water" } });
+            Recipies.Add(new CoffeeRecipie() { CoffeeType = "Cappuccino", Ingredients = new List<string> { "Espresso", "Milk", "Milk foam" } });
+            Recipies.Add(new CoffeeRecipie() { CoffeeType = "Mocha", Ingredients = new List<string> { "Chocolate syrup", "Espresso", "Milk" } });
+            Recipies.Add(new CoffeeRecipie() { CoffeeType = "Macchiato", Ingredients = new List<string> { "Espresso", "Milk foam" } });
+
+            var orderIngredients = Ingredients.OrderBy(p => p).ToList();
+            this.Ingredients = orderIngredients;
+
+            foreach (var item in Recipies)
             {
-                CoffeeType = "Latte";
+                if (func.Invoke(this, item) == true)
+                {
+                    this.CoffeeType = item.CoffeeType;
+                }
             }
-            else if (Ingredients.Contains("Espresso") && Ingredients.Contains("Milk") && Ingredients.Contains("Milk foam"))
+
+            if (this.CoffeeType == null)
             {
-                CoffeeType = "Cappuccino";
+                this.CoffeeType = "Your own speciality";
+            }
+            return this;
+        }
+        public ICoffeeMaker Serve()
+        {
+            Console.Write($"You have served {this.CoffeeType}\n\nIngredients:\n\n");
+            foreach (var item in Ingredients)
+            {
+                Console.Write($"{item}\n");
             }
             return this;
         }
     }
 
-    class CoffeeType
+    public class CoffeeRecipie : ICoffee
     {
-
-    }
-
-    class Cappuccino
-    {
-
-    }
-
-    class Americano
-    {
-
-    }
-
-    class Espresso
-    {
-
-    }
-
-    class Macchiato
-    {
-
-    }
-
-    class Mocha
-    {
-
-    }
-
-    class Latte
-    {
+        public IList<string> Ingredients { get; set; }
+        public string CoffeeType { get; set; }
 
     }
 }
