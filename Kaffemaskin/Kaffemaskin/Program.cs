@@ -5,7 +5,6 @@ namespace Coffe
 {
     public interface ICoffee
     {
-       
         string CoffeeType { get; set; }
 
         ICoffee AddChocolateSyrup();
@@ -14,61 +13,53 @@ namespace Coffe
         ICoffee AddMilkFoam();
         ICoffee AddWater();
         ICoffee CreateBewerage();
-
     }
-class Program
-        {
-            
-            static void Main(string[] args)
-            {
-                ICoffee coffee = new CoffeMaker().AddEspresso().AddMilk().CreateBewerage();
-            }
 
-            
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ICoffee coffee = new CoffeMaker().AddEspresso().AddMilk().CreateBewerage();
         }
+    }
 
-        public class CoffeMaker : ICoffee
-        {
-
+    public class CoffeMaker : ICoffee
+    {
         public List<string> Ingredients = new List<string>();
         public string CoffeeType { get; set; }
-            
-            
-            public ICoffee AddChocolateSyrup()
-            {
+
+        public ICoffee AddChocolateSyrup()
+        {
             ((List<string>)Ingredients).Add("Chocolate syrup");
-
             return this;
-            }
+        }
 
-            public ICoffee AddEspresso()
-            {
+        public ICoffee AddEspresso()
+        {
             ((List<string>)Ingredients).Add("Espresso");
             return this;
-            }
-            
-            public ICoffee AddMilk()
-            {
+        }
+
+        public ICoffee AddMilk()
+        {
             ((List<string>)Ingredients).Add("Milk");
             return this;
-            }
+        }
 
-            
-            public ICoffee AddMilkFoam()
-            {
+        public ICoffee AddMilkFoam()
+        {
             ((List<string>)Ingredients).Add("Milkfoam");
             return this;
-            }
+        }
 
-            public ICoffee AddWater()
-            {
+        public ICoffee AddWater()
+        {
             ((List<string>)Ingredients).Add("Water");
             return this;
-            }
-            
-            public ICoffee CreateBewerage()
-            {
+        }
 
+        public ICoffee CreateBewerage()
+        {
             if (Ingredients.Count <= 2 && Ingredients.Contains("Milk") && Ingredients.Contains("Espresso"))
             {
                 CoffeeType = "Latte";
@@ -79,34 +70,40 @@ class Program
             }
             return this;
         }
-        }
+    }
+
     class CoffeeType
     {
 
     }
+
     class Cappuccino
     {
 
     }
+
     class Americano
     {
 
     }
+
     class Espresso
     {
 
     }
+
     class Macchiato
     {
 
     }
+
     class Mocha
     {
 
     }
+
     class Latte
     {
 
     }
 }
-
