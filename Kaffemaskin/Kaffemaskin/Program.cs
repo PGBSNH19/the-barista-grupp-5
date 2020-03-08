@@ -24,7 +24,7 @@ namespace Coffe
 
     public interface Test
     {
-        public List<string> Recipies { get; set; }
+        public static List<string> Recipies { get; set; }
     }
 
     class Program

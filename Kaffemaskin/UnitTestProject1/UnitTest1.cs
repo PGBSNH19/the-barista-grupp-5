@@ -54,5 +54,14 @@ namespace UnitTestProject1
             ICoffee macchiato = new CoffeMaker().AddEspresso().AddMilkFoam().CreateBewerage((x, y) => x.Ingredients.SequenceEqual(y.Ingredients)).Serve();
             Assert.AreEqual("Macchiato", macchiato.CoffeeType);
         }
+
+        [TestMethod]
+        public void TestMethodCreateBewerage()
+        {
+            //Macchiato = Espresso and milk foam
+            string a = "Espresso";
+            ICoffee macchiato = new CoffeMaker().AddEspresso().AddMilkFoam().CreateBewerage((x, y) => x.Ingredients.SequenceEqual(y.Ingredients));
+            Assert.AreEqual( a, macchiato.Ingredients[0]);
+        }
     }
 }
