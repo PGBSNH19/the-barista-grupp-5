@@ -11,7 +11,7 @@ namespace Coffe
 
     }
 
-    public interface ICoffeeMaker
+    public interface ICoffeeMaker : ICoffee
     {
         ICoffeeMaker AddChocolateSyrup();
         ICoffeeMaker AddEspresso();
@@ -31,7 +31,7 @@ namespace Coffe
     {
         static void Main(string[] args)
         {
-            ICoffeeMaker coffee = new CoffeMaker().AddMilk().AddEspresso().AddMilkFoam().CreateBewerage((x, y) => x.Ingredients.SequenceEqual(y.Ingredients)).Serve();
+            ICoffee coffee = new CoffeMaker().AddMilk().AddEspresso().AddMilkFoam().CreateBewerage((x, y) => x.Ingredients.SequenceEqual(y.Ingredients)).Serve();
         }
     }
 
@@ -94,7 +94,7 @@ namespace Coffe
 
             if (this.CoffeeType == null)
             {
-                this.CoffeeType = "Your own speciality";
+                this.CoffeeType = "Your own specialty";
             }
             return this;
         }
