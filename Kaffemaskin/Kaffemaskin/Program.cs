@@ -22,11 +22,6 @@ namespace Coffe
         ICoffeeMaker Serve();
     }
 
-    public interface Test
-    {
-        public List<string> Recipies { get; set; }
-    }
-
     class Program
     {
         static void Main(string[] args)
