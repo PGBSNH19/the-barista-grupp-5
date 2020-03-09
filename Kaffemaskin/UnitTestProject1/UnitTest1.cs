@@ -8,50 +8,50 @@ namespace UnitTestProject1
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethodLatte()
+        public void TestMethodCreateLatteWithCreateBewerage()
         {
             //Latte = Milk and Espresso
-            ICoffee latte = new CoffeMaker().AddMilk().AddEspresso().CreateBewerage((x, y) => x.Ingredients.SequenceEqual(y.Ingredients)).Serve();
+            ICoffee latte = new CoffeMaker().AddMilk().AddEspresso().CreateBewerage((x, y) => x.Ingredients.SequenceEqual(y.Ingredients));
             Assert.AreEqual("Latte", latte.CoffeeType);
         }
 
         [TestMethod]
-        public void TestMethodEspresso()
+        public void TestMethodEspressoWithCreateBewerage()
         {
             //Espresso = Espresso
-            ICoffee espresso = new CoffeMaker().AddEspresso().CreateBewerage((x, y) => x.Ingredients.SequenceEqual(y.Ingredients)).Serve();
+            ICoffee espresso = new CoffeMaker().AddEspresso().CreateBewerage((x, y) => x.Ingredients.SequenceEqual(y.Ingredients));
             Assert.AreEqual("Espresso", espresso.CoffeeType);
         }
 
         [TestMethod]
-        public void TestMethodCappuccino()
+        public void TestMethodCappuccinoWithCreateBewerage()
         {
             //Cappuccino = Milk, Espresso and Milk foam
-            ICoffee cappuccino = new CoffeMaker().AddMilk().AddEspresso().AddMilkFoam().CreateBewerage((x, y) => x.Ingredients.SequenceEqual(y.Ingredients)).Serve();
+            ICoffee cappuccino = new CoffeMaker().AddMilk().AddEspresso().AddMilkFoam().CreateBewerage((x, y) => x.Ingredients.SequenceEqual(y.Ingredients));
             Assert.AreEqual("Cappuccino", cappuccino.CoffeeType);
         }
 
         [TestMethod]
-        public void TestMethodAmericano()
+        public void TestMethodAmericanoWithCreateBewerage()
         {
             //Americano = Espresso and water
-            ICoffee americano = new CoffeMaker().AddEspresso().AddWater().CreateBewerage((x, y) => x.Ingredients.SequenceEqual(y.Ingredients)).Serve();
+            ICoffee americano = new CoffeMaker().AddEspresso().AddWater().CreateBewerage((x, y) => x.Ingredients.SequenceEqual(y.Ingredients));
             Assert.AreEqual("Americano", americano.CoffeeType);
         }
 
         [TestMethod]
-        public void TestMethodMocha()
+        public void TestMethodMochaWithCreateBewerage()
         {
             //Mocha = Espresso, milk and chocolate syrup
-            ICoffee mocha = new CoffeMaker().AddEspresso().AddMilk().AddChocolateSyrup().CreateBewerage((x, y) => x.Ingredients.SequenceEqual(y.Ingredients)).Serve();
+            ICoffee mocha = new CoffeMaker().AddEspresso().AddMilk().AddChocolateSyrup().CreateBewerage((x, y) => x.Ingredients.SequenceEqual(y.Ingredients));
             Assert.AreEqual("Mocha", mocha.CoffeeType);
         }
 
         [TestMethod]
-        public void TestMethodMacchiato()
+        public void TestMethodMacchiatoWithCreateBewerage()
         {
             //Macchiato = Espresso and milk foam
-            ICoffee macchiato = new CoffeMaker().AddEspresso().AddMilkFoam().CreateBewerage((x, y) => x.Ingredients.SequenceEqual(y.Ingredients)).Serve();
+            ICoffee macchiato = new CoffeMaker().AddEspresso().AddMilkFoam().CreateBewerage((x, y) => x.Ingredients.SequenceEqual(y.Ingredients));
             Assert.AreEqual("Macchiato", macchiato.CoffeeType);
         }
 

@@ -81,8 +81,7 @@ namespace Coffe
             Recipies.Add(new CoffeeRecipie() { CoffeeType = "Mocha", Ingredients = new List<string> { "Chocolate syrup", "Espresso", "Milk" } });
             Recipies.Add(new CoffeeRecipie() { CoffeeType = "Macchiato", Ingredients = new List<string> { "Espresso", "Milk foam" } });
 
-            var orderIngredients = Ingredients.OrderBy(p => p).ToList();
-            this.Ingredients = orderIngredients;
+            this.Ingredients = Ingredients.OrderBy(p => p).ToList();
 
             foreach (var item in Recipies)
             {
